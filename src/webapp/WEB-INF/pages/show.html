@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>show profile</title>
+</head>
+<body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br/><br/>
+
+<p th:text="${user.getCount()}">value</p>
+<p th:text="${user.getName()}">value</p>
+<p th:text="${user.getSurname()}">value</p>
+<p th:text="${user.getAge()}">value</p>
+<p th:text="${user.getEmail()}">value</p>
+<span th:text="${user.getPassword()}">value</span>
+<span style="padding-left: 50px"> - пароль</span>
+
+<br/><br/>
+
+<br/><br/>
+<h3><a href="/admin">назад в админ панель</a></h3>
+
+
+</body>
+</html>

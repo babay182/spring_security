@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br/><br/>
+
+<form th:method="POST" th:action="@{/{count}(count=${user.getCount()})}" th:object="${user}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+
+    <label style="padding-left: 60px" for="surname">Enter surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</div>
+
+    <br/> <br/> <br/>
+
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age error</div>
+
+    <label style="padding-left: 60px" for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email  error</div>
+    <br/> <br/> <br/>
+    <label for="password">Password: </label>
+    <input type="password" th:field="*{password}" id="password" />
+    <br/> <br/>
+
+    <label>ADMIN</label>
+    <input type="checkbox" th:value="ROLE_ADMIN" th:name="checkbox_roles"/>
+    <br/>
+    <label>пассажир</label>
+    <input type="checkbox" th:value="ROLE_PASSENGER" th:name="checkbox_roles" checked/>
+    <br/>
+    <br/> <br/>
+    <input type="submit" value="Update!"/>
+</form>
+<br/>
+<h2><a href="/admin">&lt&lt&ltНАЗАД</a></h2>
+<br/><br/>
+
+
+</body>
+</html>

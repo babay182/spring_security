@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin_Panel</title>
+</head>
+<body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br/><br/>
+<table >
+
+    <thead>
+    <tr >
+        <th style="padding-right: 50px; padding-bottom: 20px">Имя</th>
+        <th style="padding-right: 20px; padding-bottom: 20px">Фамилия</th>
+
+        <th style="padding-right: 20px; padding-bottom: 20px">info</th>
+        <th style="padding-right: 20px; padding-bottom: 20px">edit</th>
+        <th style="padding-right: 20px; padding-bottom: 20px">удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${list}">
+        <td style="padding-right: 50px"  th:text="${user.getName()}"></td>
+        <td style="padding-right: 20px" th:text="${user.getSurname()}"></td>
+
+        <td style="padding-right: 20px" ><a th:href="@{/{count}(count=${user.getCount()})}">show</a> </td>
+        <td style="padding-right: 20px" ><a th:href="@{/{count}/edit(count=${user.getCount()})}">edit</a> </td>
+        <td style="padding-right: 20px" ><form th:method="POST" th:action="@{/{count}/delete(count=${user.getCount()})}">
+            <input type="submit" value="delete"/>
+        </form></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<h2><a href="/new">Добавить нового пользователя</a></h2>
+
+</body>
+</html>
